@@ -12,25 +12,25 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 @Configuration 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    AccountService accountService;
-
-    // phân quyền
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.authorizeRequests().antMatchers("/home","/login").permitAll()
-                .and().authorizeRequests().antMatchers("/blogs").hasRole("USER")
-                .and().authorizeRequests().antMatchers("/admin**").hasRole("ADMIN")
-                .and().formLogin().loginPage("/login").usernameParameter("email").passwordParameter("password")
-                .and().logout();
-
-    }
-
-    // xắc thực
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(accountService).passwordEncoder(NoOpPasswordEncoder.getInstance());
-
-    }
+//    @Autowired
+//    AccountService accountService;
+//
+//    // phân quyền
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable();
+//        http.authorizeRequests().antMatchers("/home","/login").permitAll()
+//                .and().authorizeRequests().antMatchers("/blogs").hasRole("USER")
+//                .and().authorizeRequests().antMatchers("/admin**").hasRole("ADMIN")
+//                .and().formLogin().loginPage("/login").usernameParameter("email").passwordParameter("password")
+//                .and().logout();
+//
+//    }
+//
+//    // xắc thực
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(accountService).passwordEncoder(NoOpPasswordEncoder.getInstance());
+//
+//    }
 }
